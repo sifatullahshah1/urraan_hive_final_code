@@ -79,15 +79,29 @@ class _ScreenAddUpdateRecordState extends State<ScreenAddUpdateRecord> {
                 },
                 label: Text("Upload Image"),
                 icon: Icon(Icons.image)),
-            SizedBox(height: 10),
-            if (_imageBytes != null)
-              ClipRect(
-                child: Image.memory(_imageBytes!),
+
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                width: 200,
+                height: 200,
+                margin: EdgeInsets.only(bottom: 20),
+                decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(15),
+                    image: _imageBytes != null
+                        ? DecorationImage(
+                            fit: BoxFit.fill,
+                            image: Image.memory(_imageBytes!).image)
+                        : null),
+                child: _imageBytes != null ? null : Icon(Icons.image, size: 50),
               ),
+            ),
 
             // Choice Chips
 
             // Filter Chips
+            SizedBox(height: 15),
             Text("Filter Chips (Multiple Select):",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             Wrap(
